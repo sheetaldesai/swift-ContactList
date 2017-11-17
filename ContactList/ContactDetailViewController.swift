@@ -29,23 +29,34 @@ class ContactDetailViewController: UIViewController {
         txtNumber.text = num
     }
 
+    func changeBorderColor(txtField: UITextField ,color:UIColor) {
+        txtField.layer.borderColor = color.cgColor
+        txtField.layer.borderWidth = 1
+    }
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
         delegate?.dismissVC(by: self)
     }
     
+    @IBAction func txtFieldEditingBegin(_ sender: UITextField) {
+        changeBorderColor(txtField: sender, color: UIColor.white)
+    }
     
+   
     @IBAction func saveButtonPressed(_ sender: Any) {
         guard let firstName = txtFirstName.text, firstName != "" else {
             print("First Name is empty")
+            changeBorderColor(txtField: txtFirstName, color: UIColor.red)
             return
         }
         guard let lastName = txtLastName.text, lastName != "" else {
             print("Last Name is empty")
+            changeBorderColor(txtField: txtLastName, color: UIColor.red)
             return
         }
         guard let number = txtNumber.text, number != "" else {
             print("Last Name is empty")
+            changeBorderColor(txtField: txtNumber, color: UIColor.red)
             return
         }
         
